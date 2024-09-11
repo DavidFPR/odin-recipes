@@ -79,7 +79,7 @@ nav {
 }
 
 nav.expanded {
-    height: 50vh;
+    height: 100vh;
 }
 
 nav>p {
@@ -131,7 +131,7 @@ nav.expanded>p {
 
 nav.expanded .nav__links {
     opacity: 1;
-    max-height: 50vh;
+    height: 100vh;
 }
 
 .nav__links>ul {
@@ -308,11 +308,12 @@ a:hover {
 
 
 
-@media (max-width: 768px) and (orientation: portrait) {
+@media (max-width: 768px) {
 
     .hamburger {
         display: flex;
     }
+
 
     .nav__links {
         display: flex;
@@ -320,14 +321,13 @@ a:hover {
         align-items: center;
         justify-content: center;
         width: 100%;
+        height: 100vh;
         position: absolute;
-        top: 10vh;
+        top: 0;
         left: 0;
         background-color: var(--nordic-night);
-        padding: 2rem 0;
         transition: opacity 0.4s ease, max-height 0.4s ease;
         opacity: 0;
-        max-height: 0;
         overflow: hidden;
     }
 
@@ -338,5 +338,102 @@ a:hover {
     .nav__links>ul>li {
         margin: 1rem 0;
     }
-    
+
+    .container {
+        width: 85%;
+        margin-bottom: 3vh;
+    }
+
+    .container>img {
+        width: 75%;
+
+    }
+
+    .recipe__box {
+        width: 85%;
+        margin-bottom: 3vh;
+
+    }
+
+    h1 {
+        text-align: center;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+        text-align: center;
+    }
+
+    h3 {
+        text-align: center;
+    }
+
+    .recipe-container {
+        grid-template-columns: 1fr;
+        /* Stack items in a single column */
+    }
+
+    .recipe-card img {
+        height: auto;
+        /* Adjust image height to maintain aspect ratio */
+    }
+
+    .recipe-card {
+        padding: 10px;
+        /* Reduce padding for small screens */
+    }
+
+}
+
+@media (min-width: 600px) and (max-width: 1024px) and (orientation: portrait) {
+
+
+
+    .container {
+        width: 85%;
+        margin-bottom: 3vh;
+    }
+
+    .container>img {
+        width: 75%;
+
+    }
+
+    .recipe__box {
+        width: 85%;
+        margin-bottom: 3vh;
+
+    }
+
+    .recipe-container {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        /* Adjust card width for tablets */
+    }
+
+    .recipe-card {
+        padding: 15px;
+        /* Adjust padding for tablets */
+    }
+
+    .recipe-card img {
+        height: 40%;
+        /* Adjust image height for tablets */
+    }
+
+    .recipe-card>h3 {
+        font-size: 1.25rem;
+        /* Slightly smaller font size for headings */
+    }
+
+    .recipe-card p {
+        font-size: 0.9rem;
+        /* Slightly smaller font size for paragraphs */
+    }
+}
+
+@media (min-width: 769px) and (orientation: landscape) {
+    .hamburger {
+        display: none;
+    }
+
 }

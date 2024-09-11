@@ -7,7 +7,8 @@
     box-sizing: content-box;
 }
 
-nav > p, .nav__links {
+nav>p,
+.nav__links {
     user-select: none;
 }
 
@@ -73,30 +74,90 @@ nav {
     align-items: center;
     position: fixed;
     z-index: 1;
+    overflow: hidden;
+    transition: height 0.4s ease;
+}
+
+nav.expanded {
+    height: 50vh;
 }
 
 nav>p {
     color: var(--moonlit-gold);
     font-size: 2rem;
     margin-left: 3vw;
+    z-index: 2;
+    transition: opacity 0.4s ease;
 }
 
-.nav__links {
-    margin-left: 3vw;
+nav.expanded>p {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    margin-right: 5vw;
+    user-select: none;
+    z-index: 2;
+}
+
+.hamburger__line {
+    width: 25px;
+    height: 3px;
+    background-color: var(--moonlit-gold);
+    margin: 4px 0;
+    transition: all 0.4s ease-in-out;
+}
+
+.hamburger.active .hamburger__line {
+    width: 30px;
+}
+
+.hamburger.active .hamburger__line:nth-child(1) {
+    transform: rotate(45deg) translate(10px, 10px);
+}
+
+.hamburger.active .hamburger__line:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active .hamburger__line:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
+
+
+nav.expanded .nav__links {
+    opacity: 1;
+    max-height: 50vh;
+}
+
+.nav__links>ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.nav__links>ul>li {
+    margin: 1rem 3rem;
 }
 
 a {
     color: var(--frosted-silver);
-    margin: 3rem;
     text-decoration: none;
     font-size: 1.5rem;
-    transition: all 0.2s ease-in-out;
+    transition: color 0.2s ease-in-out;
 }
 
 a:hover {
     color: var(--moonlit-gold);
     text-decoration: underline;
-
 }
 
 
@@ -222,7 +283,8 @@ a:hover {
     margin-bottom: 20px;
 }
 
-.recipe__box ul, .recipe__box ol {
+.recipe__box ul,
+.recipe__box ol {
     padding-left: 20px;
 }
 
@@ -241,4 +303,40 @@ a:hover {
 .history__heading {
     text-align: center;
     color: blue;
+}
+
+
+
+
+@media (max-width: 768px) and (orientation: portrait) {
+
+    .hamburger {
+        display: flex;
+    }
+
+    .nav__links {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        position: absolute;
+        top: 10vh;
+        left: 0;
+        background-color: var(--nordic-night);
+        padding: 2rem 0;
+        transition: opacity 0.4s ease, max-height 0.4s ease;
+        opacity: 0;
+        max-height: 0;
+        overflow: hidden;
+    }
+
+    .nav__links>ul {
+        flex-direction: column;
+    }
+
+    .nav__links>ul>li {
+        margin: 1rem 0;
+    }
+    
 }
